@@ -1,0 +1,1 @@
+// page that will display the hidden posts, or atleast hold it

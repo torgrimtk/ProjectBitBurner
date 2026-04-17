@@ -1,0 +1,1 @@
+// Placeholder file for now for the hidden posts logic
