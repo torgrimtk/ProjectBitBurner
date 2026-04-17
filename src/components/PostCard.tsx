@@ -1,0 +1,1 @@
+// this will hold the post card component, that we will reuse on both pages 
