@@ -4,21 +4,21 @@ import type { Post } from "../types";
 
 interface PostCardProps {
     post: Post
+    username: string | undefined
 }
 
-const PostCard = ({ post }: PostCardProps) => {
+const PostCard = ({ post, username }: PostCardProps) => {
 
-    const dangerScore = 
-
+    const dangerScore = [...post.body].filter(char => "aeiouAEIOU".includes(char)).length;
+    const imageHolder = `https://placehold.co/600x400?text=${post.id}`;
 
     return (
         <div>
-            <ul>
-                <li>
-                    <h3>{post.title}</h3>
-                    <p>{post.body}</p>
-                </li>
-            </ul>
+            <h3>{post.title}</h3>
+            <p>{post.body}</p>
+            <p>DANGER SCORE: {dangerScore}</p>
+            <p>Username: {username}</p>
+            <img src={imageHolder} alt="Telenor ftw" />
         </div>
     )
 }

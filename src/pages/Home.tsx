@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import type { Post } from "../types";
-import { getPosts } from "../api/jsonplaceholder";
+import type { Post, User } from "../types";
+import { getPosts, getUsers } from "../api/jsonplaceholder";
 import PostCard from "../components/PostCard";
 
 
 const Home = () => {
 
     const [posts, setPosts] = useState<Post[]>([]);
+    const [users, setUsers] = useState<User[]>([]);
 
     const [loading, setLoading] = useState(true);
 
@@ -15,8 +16,11 @@ const Home = () => {
     useEffect(() => {
         async function fetchPosts() {
             try {
-                const data = await getPosts();
-                setPosts(data);
+                const postData = await getPosts();
+                setPosts(postData);
+                const postUsers = await getUsers();
+                setUsers(postUsers);
+
             } catch (err) {
                 setError("Failed to fetch posts");
             } finally {
@@ -33,11 +37,13 @@ const Home = () => {
     return (
         <div>
             <h1>Hello! This is the HOME page</h1>
-            <ul>
-                {posts.map(post => (
-                    <PostCard key={post.id} post={post} />
-                ))}
-            </ul>
+
+            {posts.map(post => {
+                //Finds the matching user for each post 
+                const user = users.find(u => u.id === post.userId)
+                return <PostCard key={post.id} post={post} username={user?.name} />
+            })}
+
         </div>
     )
 }
