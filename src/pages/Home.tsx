@@ -13,6 +13,15 @@ const Home = () => {
 
     const [error, setError] = useState<string | null>(null);
 
+    const [selectedUser, setSelectedUser] = useState<number | null>(null);
+    const [sortOrder, setSortOrder] = useState<"none" | "asc" | "desc">("none");
+
+    const filteredPosts = () => {
+        return (
+            <h1>Hello</h1>
+        )
+    }
+
     useEffect(() => {
         async function fetchPosts() {
             try {
