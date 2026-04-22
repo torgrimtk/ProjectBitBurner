@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import type { Post, User } from "../types";
 import { getPosts, getUsers } from "../api/jsonplaceholder";
 import PostCard from "../components/PostCard";
+import { HiddenPostsContext } from "../context/HiddenPostsContext";
 
 
 const Home = () => {
@@ -12,9 +13,12 @@ const Home = () => {
     const [error, setError] = useState<string | null>(null);
     const [selectedUser, setSelectedUser] = useState<number | null>(null);
     const [sortOrder, setSortOrder] = useState<"none" | "asc" | "desc">("none");
+    
+    const { hiddenIds } = useContext(HiddenPostsContext)
 
     const filteredPosts = posts
         .filter(post => selectedUser === null || post.userId === selectedUser)
+        .filter(post => !hiddenIds.includes(post.id))
         .sort((a, b) => {
             if (sortOrder === "asc") return a.body.length - b.body.length
             if (sortOrder === "desc") return b.body.length - a.body.length

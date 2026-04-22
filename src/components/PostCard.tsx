@@ -1,5 +1,7 @@
 // this will hold the post card component, that we will reuse on both pages 
 
+import { useContext } from "react";
+import { HiddenPostsContext } from "../context/HiddenPostsContext";
 import type { Post } from "../types";
 
 interface PostCardProps {
@@ -12,6 +14,9 @@ const PostCard = ({ post, username }: PostCardProps) => {
     const dangerScore = [...post.body].filter(char => "aeiouAEIOU".includes(char)).length;
     const imageHolder = `https://placehold.co/600x400?text=${post.id}`;
 
+    // Broadcast receiver to be able to use it in this file from HiddenPostsContext.tsx
+    const { hidePost } = useContext(HiddenPostsContext)
+
     return (
         <div>
             <h3>{post.title}</h3>
@@ -19,6 +24,7 @@ const PostCard = ({ post, username }: PostCardProps) => {
             <p>DANGER SCORE: {dangerScore}</p>
             <p>Username: {username}</p>
             <img src={imageHolder} alt="Telenor ftw" />
+            <button onClick={() => hidePost(post.id)}>Hide post</button>
         </div>
     )
 }
