@@ -6,10 +6,12 @@ import type { Post } from "../types";
 
 interface PostCardProps {
     post: Post
-    username: string | undefined
+    username?: string | undefined
+    onHide?: () => void
+    onRestore?: () => void
 }
 
-const PostCard = ({ post, username }: PostCardProps) => {
+const PostCard = ({ post, username, onHide, onRestore }: PostCardProps) => {
 
     const dangerScore = [...post.body].filter(char => "aeiouAEIOU".includes(char)).length;
     const imageHolder = `https://placehold.co/600x400?text=${post.id}`;
@@ -25,6 +27,8 @@ const PostCard = ({ post, username }: PostCardProps) => {
             <p>Username: {username}</p>
             <img src={imageHolder} alt="Telenor ftw" />
             <button onClick={() => hidePost(post.id)}>Hide post</button>
+            {onHide && <button onClick={onHide}>Hide</button>}
+            {onRestore && <button onClick={onRestore}>Restore</button>}
         </div>
     )
 }

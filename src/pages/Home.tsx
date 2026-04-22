@@ -14,7 +14,7 @@ const Home = () => {
     const [selectedUser, setSelectedUser] = useState<number | null>(null);
     const [sortOrder, setSortOrder] = useState<"none" | "asc" | "desc">("none");
     
-    const { hiddenIds } = useContext(HiddenPostsContext)
+    const { hiddenIds, hidePost } = useContext(HiddenPostsContext)
 
     const filteredPosts = posts
         .filter(post => selectedUser === null || post.userId === selectedUser)
@@ -67,7 +67,7 @@ const Home = () => {
             {filteredPosts.map(post => {
                 //Finds the matching user for each post 
                 const user = users.find(u => u.id === post.userId)
-                return <PostCard key={post.id} post={post} username={user?.name} />
+                return <PostCard key={post.id} post={post} username={user?.name} onHide={() => hidePost(post.id)} />
             })}
 
 
