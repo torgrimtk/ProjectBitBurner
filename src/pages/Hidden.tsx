@@ -5,6 +5,7 @@ import { HiddenPostsContext } from "../context/HiddenPostsContext"
 import { getPosts } from "../api/jsonplaceholder"
 import type { Post } from "../types"
 import PostCard from "../components/PostCard"
+import { Link } from "react-router-dom"
 
 const Hidden = () => {
 
@@ -32,6 +33,7 @@ const Hidden = () => {
 
     return (
         <div>
+            <Link to="/">Go to Home</Link>
             {hiddenPosts.map(post => (
                 <PostCard key={post.id} post={post} onRestore={() => restorePost(post.id)} />
             ))}

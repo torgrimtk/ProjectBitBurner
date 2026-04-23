@@ -17,7 +17,7 @@ const PostCard = ({ post, username, onHide, onRestore }: PostCardProps) => {
     const imageHolder = `https://placehold.co/600x400?text=${post.id}`;
 
     // Broadcast receiver to be able to use it in this file from HiddenPostsContext.tsx
-    const { hidePost } = useContext(HiddenPostsContext)
+    //const { hidePost } = useContext(HiddenPostsContext)
 
     return (
         <div>
@@ -26,7 +26,6 @@ const PostCard = ({ post, username, onHide, onRestore }: PostCardProps) => {
             <p>DANGER SCORE: {dangerScore}</p>
             <p>Username: {username}</p>
             <img src={imageHolder} alt="Telenor ftw" />
-            <button onClick={() => hidePost(post.id)}>Hide post</button>
             {onHide && <button onClick={onHide}>Hide</button>}
             {onRestore && <button onClick={onRestore}>Restore</button>}
         </div>

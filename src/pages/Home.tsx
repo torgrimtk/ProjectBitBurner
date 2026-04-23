@@ -3,6 +3,7 @@ import type { Post, User } from "../types";
 import { getPosts, getUsers } from "../api/jsonplaceholder";
 import PostCard from "../components/PostCard";
 import { HiddenPostsContext } from "../context/HiddenPostsContext";
+import { Link } from "react-router-dom";
 
 
 const Home = () => {
@@ -52,6 +53,7 @@ const Home = () => {
         <div>
 
             <h1>Hello! This is the HOME page</h1>
+            <Link to="/hidden">Go to Hidden Page</Link>
 
             <select onChange={e => setSelectedUser(e.target.value === "" ? null : Number(e.target.value))}>
                 <option value="">All users</option>
