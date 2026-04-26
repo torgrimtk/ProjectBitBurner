@@ -1,7 +1,5 @@
-// this will hold the post card component, that we will reuse on both pages 
 
-import { useContext } from "react";
-import { HiddenPostsContext } from "../context/HiddenPostsContext";
+
 import type { Post } from "../types";
 
 interface PostCardProps {
