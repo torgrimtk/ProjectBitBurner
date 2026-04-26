@@ -17,6 +17,8 @@ export function HiddenPostsProvider({ children }: { children: React.ReactNode })
         setHiddenIds(prev => prev.filter(hiddenId => hiddenId !== id));
     };
 
+
+
     // useEffect 1: load from localStorage
     useEffect(() => {
         const stored = localStorage.getItem("hiddenIds")
