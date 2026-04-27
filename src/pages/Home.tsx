@@ -3,8 +3,6 @@ import type { Post, User } from "../types";
 import { getPosts, getUsers } from "../api/jsonplaceholder";
 import PostCard from "../components/PostCard";
 import { HiddenPostsContext } from "../context/HiddenPostsContext";
-import { Link } from "react-router-dom";
-
 
 const Home = () => {
 
@@ -46,8 +44,8 @@ const Home = () => {
         fetchPosts();
     }, []);
 
-    if (loading) return <p>Loading website...</p>
-    if (error) return <p>Error! Failure to fetch posts</p>
+    if (loading) return <p className='text-center text-green-400'>Loading...</p>
+    if (error) return <p className='text-center text-red-800'>{error}</p>
 
     return (
         <div className='min-h-screen p-8'>
@@ -55,7 +53,7 @@ const Home = () => {
             <h1 className='text-green-400 text-3xl font-bold text-center mb-8 tracking-widest uppercase'>Leaked Intelligence</h1>
 
             <div className='flex flex-wrap justify-center gap-4 mb-8'>
-                
+
                 <select
                     onChange={e => setSelectedUser(e.target.value === "" ? null : Number(e.target.value))}
                     className='bg-black border border-green-400 text-green-400 rounded-lg px-4 py-2 text-sm focus:outline-none'>

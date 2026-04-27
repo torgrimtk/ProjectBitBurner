@@ -18,7 +18,6 @@ export function HiddenPostsProvider({ children }: { children: React.ReactNode })
     };
 
 
-
     // useEffect 1: load from localStorage
     useEffect(() => {
         const stored = localStorage.getItem("hiddenIds")
@@ -37,5 +36,4 @@ export function HiddenPostsProvider({ children }: { children: React.ReactNode })
             {children}
         </HiddenPostsContext.Provider>
     )
-
 }
