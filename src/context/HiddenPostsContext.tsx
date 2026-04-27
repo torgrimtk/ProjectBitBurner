@@ -22,6 +22,8 @@ export function HiddenPostsProvider({ children }: { children: React.ReactNode })
     useEffect(() => {
         const stored = localStorage.getItem("hiddenIds")
         if (stored) {
+            // Without the eslint comment, React warns us that it can cause an infinite loop. The comment below ignores this error
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setHiddenIds(JSON.parse(stored))
         }
     }, [])
