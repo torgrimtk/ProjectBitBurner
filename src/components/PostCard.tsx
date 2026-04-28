@@ -15,7 +15,7 @@ const PostCard = ({ post, username, onHide, onRestore }: PostCardProps) => {
     const imageHolder = `https://placehold.co/300x150/000000/00ff00?text=Post+ID:+${post.id}`;
 
     return (
-        <div className='border border-green-400 rounded-xl p-6 flex flex-col items-center gap-4 max-w-lg mx-auto'>
+        <div className='border border-green-400 rounded-xl p-6 flex flex-col items-center gap-4'>
 
             <img src={imageHolder} alt="post image" className='rounded-lg w-full' />
 
@@ -23,7 +23,7 @@ const PostCard = ({ post, username, onHide, onRestore }: PostCardProps) => {
 
             <p className='text-gray-400 text-sm text-center'>{post.body}</p>
 
-            <p className='text-green-400 text-sm'>{username}</p>
+            <p className='text-green-400 text-sm'>User: {username}</p>
 
             <p className='text-red-800 font-bold'>Danger Score: {dangerScore}</p>
 

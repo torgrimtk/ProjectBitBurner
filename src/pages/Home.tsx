@@ -16,7 +16,6 @@ const Home = () => {
     const { hiddenIds, hidePost } = useContext(HiddenPostsContext)
 
     const filteredPosts = posts
-        .filter(post => selectedUser === null || post.userId === selectedUser)
         .filter(post => !hiddenIds.includes(post.id))
         .sort((a, b) => {
             if (sortOrder === "asc") return a.body.length - b.body.length
@@ -28,7 +27,7 @@ const Home = () => {
         async function fetchPosts() {
             try {
 
-                const postData = await getPosts();
+                const postData = await getPosts(selectedUser ?? undefined);
                 setPosts(postData);
 
                 const postUsers = await getUsers();
@@ -42,7 +41,7 @@ const Home = () => {
         }
 
         fetchPosts();
-    }, []);
+    }, [selectedUser]);
 
     if (loading) return <p className='text-center text-green-400'>Loading...</p>
     if (error) return <p className='text-center text-red-800'>{error}</p>
@@ -74,7 +73,7 @@ const Home = () => {
                 </div>
             </div>
 
-            <div className='flex flex-col gap-6'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                 {filteredPosts.map(post => {
                     const user = users.find(u => u.id === post.userId)
                     return <PostCard key={post.id} post={post} username={user?.name} onHide={() => hidePost(post.id)} />

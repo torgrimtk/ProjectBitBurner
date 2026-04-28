@@ -13,8 +13,12 @@ export async function getUsers(): Promise<User[]> {
 }
 
 // gets all the posts
-export async function getPosts(): Promise<Post[]> {
-    const response = await fetch(`https://jsonplaceholder.typicode.com/posts`);
+export async function getPosts(userId?: number): Promise<Post[]> {
+    const url = userId 
+        ? `https://jsonplaceholder.typicode.com/posts?userId=${userId}`
+        : `https://jsonplaceholder.typicode.com/posts`
+
+    const response = await fetch(url);
 
     if (!response.ok) {
         throw new Error(`Network error.`);
